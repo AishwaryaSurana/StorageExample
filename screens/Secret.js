@@ -38,7 +38,11 @@ class Secret extends Component
 
   getSecretList()
   {
-    
+    AsyncStorage.getItem('myArray')
+    .then((myArray) => 
+    {
+      this.setState({data: myArray});   
+    }).done();
   }
 
   componentWillMount()
@@ -52,7 +56,7 @@ class Secret extends Component
     console.log("selectedValue",selectedValue);
      try
      {
-       await AsyncStorage.setItem(item, selectedValue);
+       await AsyncStorage.setItem(item, JSON.stringify(selectedValue));
      }
      catch (error) {
        console.error('AsyncStorage error: ' + error.message);
@@ -60,10 +64,14 @@ class Secret extends Component
    }
 addSecret()
 {
-  saveitem(this.state.counter,this.state.title);
+  var secretTitleArr=this.state.data;
+  let obj={};
+  obj.title=this.state.title;
+  secretTitleArr.push(obj);
   this.setState({
-    counter:this.state.counter+1
-  })
+    secretTitleArr:secretTitleArr
+  });
+  this.saveitem("myArray",secretTitleArr);
 }
 
   updateSecret()
@@ -119,7 +127,7 @@ addSecret()
                 style = {styles.list}
                 title=
                 {
-                  <Text style={styles.listTitleWhite}> hi </Text>
+                  <Text style={styles.listTitleWhite}> {item.title} </Text>
                 }
                 rightIcon={
                   <View style={{flexDirection:'row'}}>
