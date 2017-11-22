@@ -67,6 +67,7 @@ addSecret()
   var secretTitleArr=this.state.data;
   let obj={};
   obj.title=this.state.title;
+  this.state.data[0]=this.state.title;
   secretTitleArr.push(obj);
   this.setState({
     secretTitleArr:secretTitleArr
@@ -75,7 +76,9 @@ addSecret()
 }
 
   updateSecret()
-  {}
+  {
+
+  }
 
   renderFooter = () => {
       if (!this.state.loading) return null;

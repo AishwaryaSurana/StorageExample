@@ -80,7 +80,7 @@ renderLoading = () =>
                   title='Secure Secret'
                   key='signup'
                   hideNavBar={false}
-                  initial={!this.state.hasToken}
+                  initial={this.state.hasToken}
                   titleStyle={styles.loginTitleStyle}
                   backButtonImage={require('./img/left.png')}
                   navigationBarStyle={styles.navBarStyle}/>
@@ -91,7 +91,7 @@ renderLoading = () =>
                   hideNavBar={false}
                   key='login'
                   title='Login'
-                  initial={this.state.hasToken}
+                  initial={!this.state.hasToken}
                   backButtonImage={require('./img/left.png')}
                   titleStyle={styles.titleStyle} 
                   direction={ 'horizontal' }
